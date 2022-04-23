@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.junkstudios.kotlinfx.ConfiguratorController"
+      minHeight="300.0" minWidth="200.0"
+      spacing="15" alignment="CENTER">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <TextField text="Name" fx:id="nameField"/>
+    <TextField text="Number" fx:id="numberField"/>
+    <TextField text="Email" fx:id="emailField"/>
+    <TextField text="Instagram" fx:id="instagramField"/>
+    <TextField text="Address" fx:id="addressField"/>
+
+    <HBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            alignment="CENTER" spacing="15">
+        <Button text="Add" onAction="#createAction"/>
+        <Button text="Cancel" cancelButton="true" onAction="#cancelAction"/>
+    </HBox>
+
+</VBox>

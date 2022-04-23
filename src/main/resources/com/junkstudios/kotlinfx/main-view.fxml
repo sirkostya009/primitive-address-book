@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.VBox?>
+<?import com.junkstudios.kotlinfx.Contact?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+<VBox xmlns:fx="http://javafx.com/fxml" spacing="10"
+      fx:controller="com.junkstudios.kotlinfx.MainController"
+      minHeight="600" minWidth="800" fillWidth="false" alignment="TOP_CENTER">
+    <padding>
+        <Insets bottom="10" left="10" right="10" top="10"/>
+    </padding>
+
+    <HBox alignment="CENTER" spacing="10">
+        <Button text="Add new Contact!" onAction="#addNewContactAction"/>
+        <Button text="Delete selected contacts" onAction="#deleteSelectedContactsAction"/>
+    </HBox>
+
+    <HBox alignment="TOP_CENTER" spacing="80">
+        <VBox alignment="CENTER_LEFT" spacing="20" fx:id="nameColumn">
+            <Label text="Name"/>
+        </VBox>
+        <VBox alignment="CENTER_LEFT" spacing="20" fx:id="numberColumn">
+            <Label text="Number"/>
+        </VBox>
+        <VBox alignment="CENTER_LEFT" spacing="20" fx:id="emailColumn">
+            <Label text="Email"/>
+        </VBox>
+        <VBox alignment="CENTER_LEFT" spacing="20" fx:id="instagramColumn">
+            <Label text="Instagram"/>
+        </VBox>
+        <VBox alignment="CENTER_LEFT" spacing="20" fx:id="addressColumn">
+            <Label text="Address"/>
+        </VBox>
+    </HBox>
+</VBox>
