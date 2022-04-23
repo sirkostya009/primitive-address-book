@@ -3,10 +3,6 @@ package com.junkstudios.kotlinfx
 import javafx.event.EventHandler
 import javafx.scene.control.Label
 import javafx.scene.input.MouseEvent
-import javafx.scene.layout.Border
-import javafx.scene.layout.BorderStroke
-import javafx.scene.layout.BorderWidths
-import javafx.scene.paint.Color
 
 class Contact(
     val name: Label,
