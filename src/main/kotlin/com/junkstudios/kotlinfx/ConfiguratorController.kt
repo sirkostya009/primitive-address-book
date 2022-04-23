@@ -10,23 +10,25 @@ import javafx.stage.Stage
 class ConfiguratorController {
 
     @FXML
-     lateinit var nameField: TextField
+    lateinit var nameField: TextField
 
     @FXML
-     lateinit var numberField: TextField
+    lateinit var numberField: TextField
 
     @FXML
-     lateinit var emailField: TextField
+    lateinit var emailField: TextField
 
     @FXML
-     lateinit var instagramField: TextField
+    lateinit var instagramField: TextField
 
     @FXML
-     lateinit var addressField: TextField
+    lateinit var addressField: TextField
 
     lateinit var stage: Stage
 
     lateinit var fieldToVBox: Map<TextField, ObservableList<Node>>
+
+    lateinit var contactsList: ArrayList<Contact>
 
     @FXML
     private fun createAction() { // creates a new contact and appends it to the list
@@ -37,6 +39,8 @@ class ConfiguratorController {
             Label(instagramField.text),
             Label(addressField.text)
         )
+
+        contactsList.add(contact)
 
         fieldToVBox[nameField]?.add(contact.name)
         fieldToVBox[numberField]?.add(contact.number)
