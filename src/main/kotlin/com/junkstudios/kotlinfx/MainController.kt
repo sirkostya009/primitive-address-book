@@ -53,7 +53,6 @@ class MainController {
     }
 
     private fun removeContact(contact: Contact) {
-        println("removing contact...")
         nameColumn.children.remove(contact.name)
         numberColumn.children.remove(contact.number)
         emailColumn.children.remove(contact.email)
@@ -89,7 +88,7 @@ class MainController {
             val instagram = contact.instagram.text
             val address = contact.address.text
 
-            if (!name.contains(nameFilter, ignoreCase = true)) // i really don't like the hardcoding here,
+            if (!name.contains(nameFilter, ignoreCase = true)) // I really don't like the hardcoding here,
                 removeContact(contact)      // better find a more handy way to do this
             else if (!number.contains(numberFilter, ignoreCase = true))
                 removeContact(contact)
