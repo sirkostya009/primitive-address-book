@@ -26,12 +26,10 @@ class ConfiguratorController {
 
     lateinit var stage: Stage
 
-    lateinit var fieldToVBox: Map<TextField, ObservableList<Node>>
-
-    lateinit var contactsList: ArrayList<Contact>
+    lateinit var master: MainController
 
     @FXML
-    private fun createAction() { // creates a new contact and appends it to the list
+    private fun createAction() { // creates a new contact and adds it to main controller
         val contact = Contact(
             Label(nameField.text),
             Label(numberField.text),
@@ -40,13 +38,8 @@ class ConfiguratorController {
             Label(addressField.text)
         )
 
-        contactsList.add(contact)
-
-        fieldToVBox[nameField]?.add(contact.name)
-        fieldToVBox[numberField]?.add(contact.number)
-        fieldToVBox[emailField]?.add(contact.email)
-        fieldToVBox[instagramField]?.add(contact.instagram)
-        fieldToVBox[addressField]?.add(contact.address)
+        master.addContact(contact)
+        stage.close()
     }
 
     @FXML

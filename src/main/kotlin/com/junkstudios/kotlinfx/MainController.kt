@@ -34,14 +34,7 @@ class MainController {
 
         val controller = fxmlLoader.getController<ConfiguratorController>() // we need to manually get
         controller.stage = stage                                            // configuration controller to add
-        controller.fieldToVBox = mapOf(                                     // entered data into main stage
-            controller.nameField      to nameColumn.children,
-            controller.numberField    to numberColumn.children,
-            controller.emailField     to emailColumn.children,
-            controller.instagramField to instagramColumn.children,
-            controller.addressField   to addressColumn.children
-        )
-        controller.contactsList = contacts
+        controller.master = this
 
         stage.scene = Scene(root)
         stage.title = "New Contact"
@@ -56,10 +49,10 @@ class MainController {
     private fun deleteSelectedContacts() {
         for (contact in contacts)
             if (contact.isActive)
-                deleteIndividualContact(contact)
+                removeContact(contact)
     }
 
-    private fun deleteIndividualContact(contact: Contact) {
+    private fun removeContact(contact: Contact) {
         println("removing contact...")
         nameColumn.children.remove(contact.name)
         numberColumn.children.remove(contact.number)
@@ -68,9 +61,18 @@ class MainController {
         addressColumn.children.remove(contact.address)
     }
 
+    fun addContact(contact: Contact) {
+        nameColumn.children += contact.name
+        numberColumn.children += contact.number
+        emailColumn.children += contact.email
+        instagramColumn.children += contact.instagram
+        addressColumn.children += contact.address
+
+        if (!contacts.contains(contact)) contacts += contact
+    }
+
     @FXML
     private fun filterQueries() {
-        println("nigga?")
         val nameFilter = (nameColumn.children[0] as TextField).text
         val numberFilter = (numberColumn.children[0] as TextField).text
         val emailFilter = (emailColumn.children[0] as TextField).text
@@ -78,24 +80,25 @@ class MainController {
         val addressFilter = (addressColumn.children[0] as TextField).text
 
         if (nameFilter.isEmpty() && numberFilter.isEmpty() && emailFilter.isEmpty() && instagramField.isEmpty() && addressFilter.isEmpty())
-            for (contact in contacts) {
-                nameColumn.children += contact.name
-                numberColumn.children += contact.number
-                emailColumn.children += contact.email
-                instagramColumn.children += contact.instagram
-                addressColumn.children += contact.address
-            }
+            for (contact in contacts) addContact(contact)
 
-        for (contact in contacts)
-            if (!contact.name.text.contains(nameFilter, ignoreCase = true))
-                deleteIndividualContact(contact)
-            else if (!contact.number.text.contains(numberFilter, ignoreCase = true))
-                deleteIndividualContact(contact)
-            else if (!contact.email.text.contains(emailFilter, ignoreCase = true))
-                deleteIndividualContact(contact)
-            else if (!contact.instagram.text.contains(instagramField, ignoreCase = true))
-                deleteIndividualContact(contact)
-            else if (!contact.address.text.contains(addressFilter, ignoreCase = true))
-                deleteIndividualContact(contact)
+        for (contact in contacts) {
+            val name = contact.name.text
+            val number = contact.number.text
+            val email = contact.email.text
+            val instagram = contact.instagram.text
+            val address = contact.address.text
+
+            if (!name.contains(nameFilter, ignoreCase = true)) // i really don't like the hardcoding here,
+                removeContact(contact)      // better find a more handy way to do this
+            else if (!number.contains(numberFilter, ignoreCase = true))
+                removeContact(contact)
+            else if (!email.contains(emailFilter, ignoreCase = true))
+                removeContact(contact)
+            else if (!instagram.contains(instagramField, ignoreCase = true))
+                removeContact(contact)
+            else if (!address.contains(addressFilter, ignoreCase = true))
+                removeContact(contact)
+        }
     }
 }
